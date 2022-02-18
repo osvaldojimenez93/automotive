@@ -1,4 +1,6 @@
 ﻿using System;
+using CsvHelper;
+using System.Globalization;
 
 namespace VehicleManager
 {
@@ -32,6 +34,16 @@ namespace VehicleManager
             Console.WriteLine($"Make: {vehicle1.Make} \nModel: {vehicle1.Model} \nYear: {vehicle1.Year} \nMileage: {vehicle1.Mileage}");
             Console.ReadKey();
 
+            var vics = new List<Vehicle>
+            {
+                new Vehicle(nickname, make, model, year, vin, mileage),
+            };
+
+            using (var writer = new StreamWriter("/home/osjimene/automotive/Vehicles.csv"))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.WriteRecords(vics);
+            }
 
 
         }

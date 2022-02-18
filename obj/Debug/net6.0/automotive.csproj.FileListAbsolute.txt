@@ -13,3 +13,5 @@
 /home/osjimene/automotive/obj/Debug/net6.0/ref/automotive.dll
 /home/osjimene/automotive/obj/Debug/net6.0/automotive.pdb
 /home/osjimene/automotive/obj/Debug/net6.0/automotive.genruntimeconfig.cache
+/home/osjimene/automotive/bin/Debug/net6.0/CsvHelper.dll
+/home/osjimene/automotive/obj/Debug/net6.0/automotive.csproj.CopyComplete
