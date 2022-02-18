@@ -63,6 +63,28 @@ namespace VehicleManager
             } 
         }
         
-
+        //public void AddFault(string vehicleName, DateTime date, string location, string description, string partNumber )
+        public void AddFault(Vehicle obj)
+        {
+            
+            Console.WriteLine($"Creating a fault for vehicle named: {obj.Nickname}");
+            var vehicleName = obj.Nickname;
+            Console.WriteLine("Please Describe the fault you want to annotate:");
+            var description = Console.ReadLine();
+            Console.WriteLine("Please enter the part number (if none enter N/A):");
+            var partNumber = Console.ReadLine();
+            Console.WriteLine("What location of the vehicle is this fault at? (e.g., Passenger front, Driver rear, etc.");
+            var location = Console.ReadLine();
+            var date = DateTime.Today;
+                   
+                                   
+            var fault = new Fault(vehicleName, date, location, description, partNumber);
+            allFaults.Add(fault);
+            using (var writer = new StreamWriter("/home/osjimene/automotive/Faults.csv"))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {                               
+                csv.WriteRecords(allFaults);
+            } 
+        }
     }
 }

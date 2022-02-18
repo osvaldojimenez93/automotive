@@ -18,6 +18,14 @@ namespace VehicleManager
             Console.WriteLine($"Make: {vehicle1.Make} \nModel: {vehicle1.Model} \nYear: {vehicle1.Year} \nMileage: {vehicle1.Mileage}");
             Console.ReadKey();
 
+            Console.WriteLine($"Get ready to input a fault you would like to annotate on the vehicle named {vehicle1.Nickname}.");
+            Console.ReadKey();
+
+            vehicle1.AddFault(vehicle1);
+
+            System.Console.WriteLine("faults have been annotated press any key to exit... ");
+            Console.ReadKey();
+
 
 
 
