@@ -10,6 +10,9 @@ namespace VehicleManager
         static void Main(string[] args)
         {
             Console.WriteLine("Initializing Maintenance Program .... ");
+            Console.WriteLine("Loading Vehicles in Database.... ");
+           
+
             Console.WriteLine("Hello, lets get started entering a vehicle.");
             var vehicle1 = new Vehicle();
             vehicle1.ParkVehicle(vehicle1);
@@ -24,7 +27,7 @@ namespace VehicleManager
             vehicle1.AddFault(vehicle1);
 
             System.Console.WriteLine("faults have been annotated press any key to exit... ");
-            Console.ReadKey();
+            Console.ReadKey(); 
 
 
 
