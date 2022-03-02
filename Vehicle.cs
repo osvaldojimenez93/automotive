@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using CsvHelper;
+using CsvHelper.TypeConversion;
+using CsvHelper.Configuration;
 using System.Globalization;
+
 
 namespace VehicleManager
 {
@@ -16,7 +19,7 @@ namespace VehicleManager
         public int Mileage {get; set;}
 
         //Create a list that tracks all the faults on a vehicle.
-        public List<Fault> allFaults = new List<Fault>();
+        //public List<Fault> allFaults = new List<Fault>();
         //Create a list that tracks all the vehicles in the Database.
         public List<Vehicle> vics = new List<Vehicle>();
         
@@ -79,9 +82,15 @@ namespace VehicleManager
                    
                                    
             var fault = new Fault(vehicleName, date, location, description, partNumber);
+            List<Fault> allFaults = new List<Fault>();
             allFaults.Add(fault);
-            using (var writer = new StreamWriter("/home/osjimene/automotive/Faults.csv"))
-            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                HasHeaderRecord = false,
+            };
+            using (var stream = File.Open("/home/osjimene/automotive/Faults.csv",FileMode.Append))
+            using (var writer = new StreamWriter(stream))
+            using (var csv = new CsvWriter(writer, config))
             {                               
                 csv.WriteRecords(allFaults);
             } 
