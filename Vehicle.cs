@@ -21,7 +21,7 @@ namespace VehicleManager
         //Create a list that tracks all the faults on a vehicle.
         //public List<Fault> allFaults = new List<Fault>();
         //Create a list that tracks all the vehicles in the Database.
-        public List<Vehicle> vics = new List<Vehicle>();
+        //public List<Vehicle> vics = new List<Vehicle>();
         
         
 
@@ -58,12 +58,20 @@ namespace VehicleManager
 
         public void ParkVehicle(Vehicle obj)
         {
-            using (var writer = new StreamWriter("/home/osjimene/automotive/Vehicles.csv"))
-            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            List<Vehicle> vics = new List<Vehicle>();
+            vics.Add(obj);
+
+             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                HasHeaderRecord = false,
+            };
+            using (var stream = File.Open("/home/osjimene/automotive/Vehicles.csv",FileMode.Append))
+            using (var writer = new StreamWriter(stream))
+            using (var csv = new CsvWriter(writer, config))
             {                               
-                vics.Add(obj);
                 csv.WriteRecords(vics);
-            } 
+            }
+
         }
         
         //public void AddFault(string vehicleName, DateTime date, string location, string description, string partNumber )
